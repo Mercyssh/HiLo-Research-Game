@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiLo Dice Game</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Vignette Effect -->
+    <div id="vignette"></div>
+
+    <!-- Onboarding / home page -->
+    <div id="homepage" class="">
+        <div id="homepageTitle">
+            <img src="assets/menu_logo.png">
+            <p>A<br />Research<br />Game</p>
+        </div>
+
+        <div id="homepageButtons" class="hide">
+            <button id="playGameBtn">Play Game</button>
+            <button>Credits</button>
+        </div>
+    </div>
+
+    <div id="gamepage" class="turnoff hide">
+        <!-- Tutorial page, disable when finished, enable when needed -->
+        <div id="tutorial" class="">
+            <div class="tutorialcard tutorialShow" data-index="0" data-status="active" data-hook="#predictionsLeft"
+                data-offset="above" data-margin="40">
+                <p class="tutorialinfo">You only have 15 chances to win 500 points ></p>
+            </div>
+            <div class="tutorialcard" data-index="1" data-status="inactive" data-hook="#greaterBtn" data-offset="below"
+                data-margin="60">
+                <p class="tutorialinfo">Every turn, you must make a prediction wether the next roll will be
+                    greater/lesser than the current one ></p>
+            </div>
+            <div class="tutorialcard" data-index="2" data-status="inactive" data-hook="#dice" data-offset="below"
+                data-margin="80">
+                <p class="tutorialinfo">This is a 12 sided dice. Numbers Range from 1 -> 12</p>
+            </div>
+            <div class="tutorialcard" data-index="3" data-status="inactive" data-hook="#score" data-offset="above"
+                data-margin="60">
+                <p class="tutorialinfo">Correct Predictions increase your score by 25% ></p>
+            </div>
+            <div class="tutorialcard" data-index="4" data-status="inactive" data-hook="#score" data-offset="above"
+                data-margin="60">
+                <p class="tutorialinfo">Wrong Predictions decrease your score by 20% ></p>
+            </div>
+            <div class="tutorialcard" data-index="5" data-status="inactive" data-hook="#score" data-offset="above"
+                data-margin="60">
+                <p class="tutorialinfo">Best of luck! ></p>
+            </div>
+        </div>
+
+        <!-- Fixed title in top left -->
+        <div id="fixedtitle">
+            <p>HiLo</p>
+            <p> - A Research Game</p>
+        </div>
+
+        <!-- Main Game -->
+        <div id="gameContainer">
+            <p id="predictionsLeft">You have 15 predictions left</p>
+            <div id="promptContainer">
+                <p>The next roll will be</p>
+                <div id="choices">
+                    <button id="lesserBtn">Lesser</button>
+                    <div class="sep"></div>
+                    <button id="equalBtn">=</button>
+                    <div class="sep"></div>
+                    <button id="greaterBtn">Greater</button>
+                </div>
+                <p>than</p>
+                <img id="dice" src="assets/dice-static.png" alt="">
+            </div>
+        </div>
+
+        <!-- scorebar at bottom -->
+        <div id="scorebarContainer">
+            <p>Score</p>
+            <p id="score">0/500</p>
+            <!-- Actual Bar -->
+            <div id="scorebar">
+                <div></div>
+            </div>
+
+            <button>
+                Read<br>Rules Again
+            </button>
+        </div>
+    </div>
+
+    <!-- JQUERY -->
+    <script src="assets/jquery.js"></script>
+    <!-- INTRO SCREEN -->
+    <script src="intro-screen.js" defer></script>
+    <!-- TUTORIAL SCREEN -->
+    <script src="tutorial-screen.js" defer></script>
+</body>
+
+</html>

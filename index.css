@@ -1,0 +1,373 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+
+    user-select: none;
+    ;
+}
+
+/* Colors */
+:root {
+    --redText: #D2424A;
+    --scorebarBg: #463B3C;
+    --darkgray: #70757E;
+    --scorebarHeight: 30px;
+}
+
+body {
+    background: #E8F0FC;
+}
+
+.hide {
+    opacity: 0;
+}
+
+.turnoff {
+    display: none !important;
+}
+
+/* ########## FIXED STUFF ########## */
+#fixedtitle {
+    width: max-content;
+    height: max-content;
+    position: fixed;
+    background: none;
+    padding: 30px;
+    color: #616a78a1;
+
+    display: flex;
+    align-items: center;
+
+    font-family: 'Montserrat', sans-serif;
+
+    user-select: none;
+}
+
+#fixedtitle p:first-child {
+    font-size: 28px;
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+/* z-9 */
+#vignette {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    box-shadow: inset 0 0 100px rgba(38, 52, 73, 255);
+    z-index: 9;
+    pointer-events: none;
+}
+
+
+/* ########## MENU SCREEN ########## */
+#homepage {
+    position: absolute;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    row-gap: 100px;
+}
+
+/* Menu logo */
+#homepageTitle img {
+    height: 130px;
+    margin-right: -100px;
+    z-index: 10;
+}
+
+#homepageTitle {
+    width: auto;
+
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    color: #7781A3;
+    font-weight: 500;
+}
+
+/* Container for buttons on homepage */
+#homepageButtons {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.3s ease-in;
+}
+
+/* Buttons on menu/home page */
+#homepageButtons button {
+    background: none;
+    outline: none;
+    border: 0px none;
+    cursor: pointer;
+
+    width: max-content;
+
+    color: var(--redText);
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: 18px;
+
+    padding: 8px;
+
+    transition: all 0.3s ease-in;
+}
+
+#homepageButtons button:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+#homepageButtons button:active {
+    background: rgba(0, 0, 0, 0.3);
+    transition: background 0s linear;
+}
+
+/* ########## GAME WINDOW MISC ############ */
+#scorebarContainer {
+    position: absolute;
+    bottom: 0px;
+    width: 100vw;
+    height: max-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 10;
+}
+
+#scorebarContainer p:first-child {
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    color: var(--darkgray);
+
+    user-select: none;
+}
+
+#scorebarContainer #score {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--redText);
+
+    /* Positioning tweaks */
+    margin-top: 2px;
+    margin-bottom: 10px;
+
+    user-select: none;
+}
+
+/* z-10 Contains the scorebarbg*/
+#scorebar {
+    width: 100vw;
+    height: var(--scorebarHeight);
+    background: var(--scorebarBg);
+}
+
+/* Fill bar */
+#scorebar div {
+    width: 0vw;
+    height: 100%;
+    background: var(--redText);
+}
+
+/* Read Rules Button */
+#scorebarContainer button {
+    position: absolute;
+    left: 20px;
+    bottom: calc(var(--scorebarHeight) + 10px);
+
+    background: none;
+    outline: none;
+    border: 0px none;
+
+    text-align: left;
+
+    font-family: 'Lato', sans-serif;
+    color: var(--scorebarBg);
+
+    transition: all 0.3s ease-in-out;
+
+    cursor: pointer;
+}
+
+#scorebarContainer button:hover {
+    background: #00000022;
+}
+
+/* ############## GAME WINDOW MAIN ##############*/
+#gameContainer {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: -15px;
+
+    position: absolute;
+}
+
+#predictionsLeft {
+    font-family: 'Lato', sans-serif;
+    color: var(--darkgray);
+}
+
+/* Container for main prompt in the center of the screen */
+#promptContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+
+    margin-top: 15px;
+}
+
+/* "The Next roll will be .. */
+#promptContainer p {
+    color: var(--scorebarBg);
+}
+
+/* Dice Roll Animation */
+#promptContainer img {
+    width: 100px;
+}
+
+/* Container for choice buttons */
+#choices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0px 10px;
+}
+
+#choices button {
+    background: none;
+    outline: none;
+    border: 0px none;
+    padding: 5px 5px;
+
+    width: 100%;
+
+    font-family: 'Inter', 'Lato', sans-serif;
+    font-weight: 800;
+    color: var(--redText);
+    font-size: 16px;
+
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+#choices button:hover {
+    background: rgba(0, 0, 0, 0.115);
+}
+
+/* Seperator */
+.sep {
+    width: 100%;
+    height: 1.2px;
+    background: rgb(207, 207, 207);
+}
+
+/* Tutorial Screen */
+#tutorial {
+    position: absolute;
+
+    margin: 0px;
+    padding: 0px;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.300);
+    z-index: 11;
+
+    overflow: hidden;
+
+    user-select: none;
+}
+
+.tutorialcard {
+    position: absolute;
+
+    max-width: 330px;
+    height: max-content;
+
+    background-color: rgba(0, 0, 0, 0.577);
+    border: 1px solid white;
+    border-radius: 8px;
+    opacity: 0;
+
+    padding: 9px 12px;
+
+    transform: translate(-50%, -50%);
+    transition: opacity .5s ease-in-out;
+
+    cursor: pointer;
+}
+
+.tutorialinfo {
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+}
+
+.tutorialShow {
+    opacity: 1;
+}
+
+.tutorialPop {
+    z-index: 13 !important;
+}
+
+.testsomething {
+    position: absolute;
+
+    max-width: 220px;
+    height: auto;
+    padding: 13px 16px;
+
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-family: 'Lato', sans-serif;
+
+    left: 100px;
+    top: 50%;
+
+    z-index: 20;
+}
+
+.testsomething div {
+    position: absolute;
+    left: 50%;
+    bottom: -13px;
+    transform: translate(-50%, 0%);
+
+    width: 0;
+    height: 0;
+
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid rgb(0, 0, 0);
+    border-radius: 10px;
+}
