@@ -238,6 +238,20 @@ body {
     margin-top: 15px;
 }
 
+/* Text part before dice container */
+#textContainer {
+    display: flex;
+    align-items: center;
+    opacity: 1;
+
+    transition: opacity .1s ease-in-out;
+}
+
+.hideTextContainer {
+    /* display: none !important; */
+    opacity: 0 !important;
+}
+
 /* "The Next roll will be .. */
 #promptContainer p {
     color: var(--scorebarBg);
@@ -285,6 +299,32 @@ body {
     height: 1.2px;
     background: rgb(207, 207, 207);
 }
+
+.diceContainer {
+    position: relative;
+    display: flex;
+    right: 0%;
+
+    transition: all 0.5s ease-in-out;
+}
+
+.diceToCenter {
+    right: 50%;
+    transform: translate(50%, 0%);
+}
+
+#diceNumber {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -40%);
+
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: white !important;
+}
+
 
 /* Tutorial Screen */
 #tutorial {

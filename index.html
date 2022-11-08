@@ -66,16 +66,26 @@
         <div id="gameContainer">
             <p id="predictionsLeft">You have 15 predictions left</p>
             <div id="promptContainer">
-                <p>The next roll will be</p>
-                <div id="choices">
-                    <button id="lesserBtn">Lesser</button>
-                    <div class="sep"></div>
-                    <button id="equalBtn">=</button>
-                    <div class="sep"></div>
-                    <button id="greaterBtn">Greater</button>
+
+                <!-- Text part before dice -->
+                <div id="textContainer">
+                    <p>The next roll will be</p>
+                    <div id="choices">
+                        <button id="lesserBtn">Lesser</button>
+                        <div class="sep"></div>
+                        <button id="equalBtn">=</button>
+                        <div class="sep"></div>
+                        <button id="greaterBtn">Greater</button>
+                    </div>
+                    <p>than</p>
                 </div>
-                <p>than</p>
-                <img id="dice" src="assets/dice-static.png" alt="">
+
+                <!-- Dice part -->
+                <div class="diceContainer">
+                    <img id="dice" src="assets/dice-static.png" alt="">
+                    <p id="diceNumber"></p>
+                </div>
+
             </div>
         </div>
 
