@@ -1,16 +1,13 @@
 var tutorialCards = document.querySelectorAll(".tutorialcard");
 
 //Align all tutorial cards
-$(document).ready(function () {
-    for (var c of tutorialCards) {
-        c.addEventListener("click", nextTutorialCard);
-    }
-});
+for (var c of tutorialCards) {
+    c.addEventListener("click", nextTutorialCard);
+}
+
 
 // Function used to make sure the tutorial cards are in the correct position
 function updateTutorialCardsPosition() {
-
-    console.log(tutorialCards);
     for (var c of tutorialCards) {
         if (c.getAttribute("data-hook") != "") {
 
@@ -35,14 +32,20 @@ window.addEventListener("resize", updateTutorialCardsPosition); //Update on resi
 
 // Function which switches to the next card on click on current card
 function nextTutorialCard() {
-    var tutorialCards = document.querySelectorAll(".tutorialcard");
 
     //Find current card : and switch to next
     for (var card in tutorialCards) {
-        if (parseInt(card) < tutorialCards.length - 1) {
+        if (parseInt(card) <= tutorialCards.length - 1) {
             if (tutorialCards[card].getAttribute("data-status") == "active") {
-                var _hook = $(tutorialCards[card].getAttribute("data-hook"));
-                var _next_hook = $(tutorialCards[parseInt(card) + 1].getAttribute("data-hook"))
+
+                //Check for last and break off
+                if (card == tutorialCards.length - 1) {
+                    disableTutorial();
+                    break;
+                }
+
+                // var _hook = $(tutorialCards[card].getAttribute("data-hook"));
+                // var _next_hook = $(tutorialCards[parseInt(card) + 1].getAttribute("data-hook"))
 
                 //disable me
                 tutorialCards[card].setAttribute("data-status", "inactive") //status
@@ -58,18 +61,21 @@ function nextTutorialCard() {
 
                 break;
             }
-        } else {
-            //Disable tutorial if ur on last card
-            disableTutorial();
         }
+
+        // if (card == tutorialCards.length - 1) {
+        //     disableTutorial();
+        // }
     }
 }
 
 //Simply call this to completely disable the tutorial
 function disableTutorial() {
+
     //Fade out and turn off
     $("#tutorial").animate({ opacity: 0 }, 1000, () => {
         $("#tutorial").addClass("turnoff");
+        rollDice();
     })
 }
 //Call this to bring it back again!
