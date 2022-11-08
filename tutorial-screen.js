@@ -40,12 +40,13 @@ function nextTutorialCard() {
 
                 //Check for last and break off
                 if (card == tutorialCards.length - 1) {
-                    disableTutorial();
+                    if (!_rolling) {
+                        _rolling = true;
+                        console.log("clicked");
+                        disableTutorial();
+                    }
                     break;
                 }
-
-                // var _hook = $(tutorialCards[card].getAttribute("data-hook"));
-                // var _next_hook = $(tutorialCards[parseInt(card) + 1].getAttribute("data-hook"))
 
                 //disable me
                 tutorialCards[card].setAttribute("data-status", "inactive") //status
