@@ -30,6 +30,7 @@ var op = null;
 var win = false;
 var gameOn = true;  //Tracks when the game ends
 var streak = 2; //Should start at 0
+var multiplier = 1; //Ideally 1, set to 2 on end of dice roll
 
 // Controllable parameters
 var score = 100;    //Starting Score
@@ -42,6 +43,10 @@ var predictions = 15;   //Number of chances
 $("#lesserBtn").click(rollDice);
 $("#equalBtn").click(rollDice);
 $("#greaterBtn").click(rollDice);
+
+// Choose Yes/No Bonus Shot Buttons
+$("#yesShot").click(() => { ApplyBonus(true) });
+$("#noShot").click(() => { ApplyBonus(false) });
 //###END EVENT HANDLERS
 
 // GAME LOGIC FUNCTIONS
@@ -108,16 +113,20 @@ function DetermineOutcome() {
         // Win / Flash Animation
         if (correct) {
             correctFlashSequence(); //Green Flash
-            score = Math.round(MathClamp(score + (score * increment / 100), 0, maxScore));  //Increase by 25%
+            score = Math.round(MathClamp(score + (score * increment * multiplier / 100), 0, maxScore));  //Increase by 25%
             streak++;   //Increment Streak
 
             //Implement Streak Logic and Sequence
+
         }
         else {
             wrongFlashSequence();   //Red Flash
-            score = Math.round(MathClamp(score - (score * decrement / 100), 0, maxScore))  //Decrease by 25%
+            score = Math.round(MathClamp(score - (score * decrement * multiplier / 100), 0, maxScore))  //Decrease by 25%
             streak = 0;   //Reset Streak
         }
+
+        //Reset Multiplier after using it
+        multiplier = 1;
 
         //Update UI
         scoreElement.innerHTML = score + "/" + maxScore;
@@ -144,7 +153,7 @@ function WinLoseChecks() {
 // Call when you want to offer a streak to the player
 function OfferStreak() {
 
-    //Update UI : Hide remainind preds, show offer
+    //Update UI : Hide remainind preds, show offer, disable other ui
     $("#predictionsLeft").animate({ opacity: 0 }, () => {
         predictionsLeft.classList.add("turnoff");
         bonusShotContainer.classList.remove("turnoff");
@@ -152,6 +161,18 @@ function OfferStreak() {
     })
 
     streak = 0;   // Reset Streak
+}
+
+// Call on click of yes or no btn
+function ApplyBonus(bool) {
+    if (bool) { multiplier = 2; }
+
+    //Update UI : Show remainind preds, hide offer, enable other ui
+    $("#predictionsLeft").animate({ opacity: 1 }, () => {
+        predictionsLeft.classList.remove("turnoff");
+        bonusShotContainer.classList.add("turnoff");
+        promptContainer.classList.remove("disabled");
+    })
 }
 
 // Call when the game ends
