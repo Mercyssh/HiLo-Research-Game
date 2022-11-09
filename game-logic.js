@@ -26,6 +26,8 @@ const diceRollDuration = 2000;  //Enter value in ms. Experiment to find out plz
 var currentNumber = null;
 var lastNumber = null;
 var op = null;
+var win = false;
+var gameOn = true;  //Tracks when the game ends
 var streak = 0;
 
 // Controllable parameters
@@ -78,12 +80,12 @@ function DiceToPNG(delay, callback) {
     //Dice just stopped Rolling. In the Center of the Screen
     dice.src = "assets/dice-static.png"
 
-    // Get New number
-    currentNumber = getRandomInt(1, 12);
-    diceNumber.innerHTML = currentNumber;
+    // // Get New number
+    // currentNumber = getRandomInt(1, 12);
+    // diceNumber.innerHTML = currentNumber;
 
-    //Compare new number with previous against user choice
-    DetermineOutcome();
+    DetermineOutcome(); //Determine Score, Streak, Prediction counts
+    WinLoseChecks(); //Perform Win and Loose Checks. Call Game End function if needed
 
     _rolling = false; rolling = false;  //cleanup
 
@@ -95,8 +97,12 @@ function DiceToDefault() {
 }
 /* #endregion */
 
-//OUTCOME DETERMINATION : Tries to determine wether the guess was correct or not
+/* #region OUTCOME DETERMINATION*/
 function DetermineOutcome() {
+    // Get New number
+    currentNumber = getRandomInt(1, 12);
+    diceNumber.innerHTML = currentNumber;
+
     if (lastNumber != null || op != null || op != undefined) {
         var correct = eval("" + lastNumber + op + currentNumber);
         op = null;
@@ -128,7 +134,27 @@ function DetermineOutcome() {
     }
 }
 
-// Call when correct guess
+function WinLoseChecks() {
+    //You win if you reach the max Score
+    if (score == maxScore) GameEnd(true);
+    //You lose if you run out of predictions
+    if (predictions <= 0) GameEnd(false);
+}
+
+// Call when the game ends
+function GameEnd(bool) {
+    // Blast Confetti...
+    if (bool) {
+
+    }
+    // Show Lose Screen
+    if (!bool) {
+
+    }
+}
+/* #endregion */
+
+/* #region FLASH SEQUENCES */
 function correctFlashSequence() {
     flasher.classList.add("correctFlash");
     setTimeout(() => { flasher.classList.remove("correctFlash"); }, 500);
@@ -138,9 +164,9 @@ function wrongFlashSequence() {
     flasher.classList.add("wrongFlash");
     setTimeout(() => { flasher.classList.remove("wrongFlash"); }, 500);
 }
+/* #endregion */
 
-
-// HELPER FUNCTIONS
+/* #region HELPER FUNCTIONS */
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -152,3 +178,4 @@ function MathClamp(value, min, max) {
     value = Math.min(Math.max(0, value), max);
     return value;
 }
+/* #endregion */
