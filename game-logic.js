@@ -1,5 +1,5 @@
 //Get Button Selectors
-/* #region   */
+/* #region SELECTORS*/
 const predictionsLeft = document.querySelector("#predictionsLeft");
 const bonusShotContainer = document.querySelector("#bonusShotContainer");
 
@@ -29,8 +29,8 @@ var lastNumber = null;
 var op = null;
 var win = false;
 var gameOn = true;  //Tracks when the game ends
-var streak = 2; //Should start at 0
-var multiplier = 1; //Ideally 1, set to 2 on end of dice roll
+var streak = 0; //Should start at 0
+var multiplier = 1; //Ideally 1, set to 2 on Bonus Shot
 
 // Controllable parameters
 var score = 100;    //Starting Score
@@ -86,6 +86,10 @@ function DiceToPNG(delay, callback) {
     //Dice just stopped Rolling. In the Center of the Screen
     dice.src = "assets/dice-static.png"
 
+    // Reset Fire Dice if it exists
+    $("#dice").removeClass("onFire");
+    $("#fireEffect").addClass("hide");
+
     DetermineOutcome(); //Determine Score, Streak, Prediction counts
     if (streak >= 3) OfferStreak();  //Offer Streak
     WinLoseChecks(); //Perform Win and Loose Checks. Call Game End function if needed
@@ -115,9 +119,6 @@ function DetermineOutcome() {
             correctFlashSequence(); //Green Flash
             score = Math.round(MathClamp(score + (score * increment * multiplier / 100), 0, maxScore));  //Increase by 25%
             streak++;   //Increment Streak
-
-            //Implement Streak Logic and Sequence
-
         }
         else {
             wrongFlashSequence();   //Red Flash
@@ -165,7 +166,11 @@ function OfferStreak() {
 
 // Call on click of yes or no btn
 function ApplyBonus(bool) {
-    if (bool) { multiplier = 2; }
+    if (bool) {
+        multiplier = 2; //Set multiplier
+        $("#dice").addClass("onFire") //Enable Fire
+        $("#fireEffect").removeClass("hide");   //Unhide Fire
+    }
 
     //Update UI : Show remainind preds, hide offer, enable other ui
     $("#predictionsLeft").animate({ opacity: 1 }, () => {

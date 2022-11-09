@@ -394,6 +394,7 @@ body {
     background: rgb(207, 207, 207);
 }
 
+/* #region DICE*/
 .diceContainer {
     position: relative;
     display: flex;
@@ -418,6 +419,32 @@ body {
     font-size: 20px;
     color: white !important;
 }
+
+/* The Fire Gif */
+#fireEffect {
+    position: absolute;
+    z-index: -1;
+
+    transition: opacity 0.5s ease-in-out;
+    transform: translate(15px, -19px) scale(1.5) rotate(30deg);
+}
+
+/* Main Dice */
+#dice {
+    transition: filter 0.5s ease-in-out;
+}
+
+/* Turn Dice Orange */
+.onFire {
+    filter: hue-rotate(20deg) saturate(1.4) brightness(1.2);
+}
+
+/* Contains Dice and Fire */
+#dices {
+    display: flex;
+}
+
+/* #endregion */
 
 /* #endregion */
 

@@ -64,8 +64,12 @@
 
         <!-- Main Game -->
         <div id="gameContainer">
+            <!-- Wrapper for Top part -->
             <div>
+                <!-- Regular Text -->
                 <p id="predictionsLeft" class="">You have 15 predictions left</p>
+
+                <!-- Bonus Shot -->
                 <div id="bonusShotContainer" class="turnoff">
                     <p>Play Bonus Shot? <span>2x Risk 2x Reward!</span></p>
                     <div id="bonusShotChoices">
@@ -75,6 +79,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Rest of the Game Prompt -->
             <div id="promptContainer" class="">
 
                 <!-- Text part before dice -->
@@ -92,7 +98,10 @@
 
                 <!-- Dice part -->
                 <div class="diceContainer">
-                    <img id="dice" src="assets/dice-static.png" alt="">
+                    <div id="dices">
+                        <img src="assets/fire.gif" id="fireEffect" class="hide" />
+                        <img id="dice" src="assets/dice-static.png" class="" />
+                    </div>
                     <p id="diceNumber"></p>
                 </div>
 
