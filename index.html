@@ -64,8 +64,18 @@
 
         <!-- Main Game -->
         <div id="gameContainer">
-            <p id="predictionsLeft">You have 15 predictions left</p>
-            <div id="promptContainer">
+            <div>
+                <p id="predictionsLeft" class="">You have 15 predictions left</p>
+                <div id="bonusShotContainer" class="turnoff">
+                    <p>Play Bonus Shot? <span>2x Risk 2x Reward!</span></p>
+                    <div id="bonusShotChoices">
+                        <div id="yesShot" class="hoverable">Yes</div>
+                        <div class="vsep"></div>
+                        <div id="noShot" class="hoverable">No</div>
+                    </div>
+                </div>
+            </div>
+            <div id="promptContainer" class="">
 
                 <!-- Text part before dice -->
                 <div id="textContainer">

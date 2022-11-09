@@ -1,6 +1,7 @@
 //Get Button Selectors
 /* #region   */
 const predictionsLeft = document.querySelector("#predictionsLeft");
+const bonusShotContainer = document.querySelector("#bonusShotContainer");
 
 const lesserBtn = document.querySelector("#lesserBtn");
 const equalBtn = document.querySelector("#equalBtn");
@@ -28,7 +29,7 @@ var lastNumber = null;
 var op = null;
 var win = false;
 var gameOn = true;  //Tracks when the game ends
-var streak = 0;
+var streak = 2; //Should start at 0
 
 // Controllable parameters
 var score = 100;    //Starting Score
@@ -80,11 +81,8 @@ function DiceToPNG(delay, callback) {
     //Dice just stopped Rolling. In the Center of the Screen
     dice.src = "assets/dice-static.png"
 
-    // // Get New number
-    // currentNumber = getRandomInt(1, 12);
-    // diceNumber.innerHTML = currentNumber;
-
     DetermineOutcome(); //Determine Score, Streak, Prediction counts
+    if (streak >= 3) OfferStreak();  //Offer Streak
     WinLoseChecks(); //Perform Win and Loose Checks. Call Game End function if needed
 
     _rolling = false; rolling = false;  //cleanup
@@ -134,11 +132,26 @@ function DetermineOutcome() {
     }
 }
 
+// Makes checks for win and loose conditions
+// Might move this into Main DetermineOutcome function
 function WinLoseChecks() {
     //You win if you reach the max Score
     if (score == maxScore) GameEnd(true);
     //You lose if you run out of predictions
     if (predictions <= 0) GameEnd(false);
+}
+
+// Call when you want to offer a streak to the player
+function OfferStreak() {
+
+    //Update UI : Hide remainind preds, show offer
+    $("#predictionsLeft").animate({ opacity: 0 }, () => {
+        predictionsLeft.classList.add("turnoff");
+        bonusShotContainer.classList.remove("turnoff");
+        promptContainer.classList.add("disabled");
+    })
+
+    streak = 0;   // Reset Streak
 }
 
 // Call when the game ends

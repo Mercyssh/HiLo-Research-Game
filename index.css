@@ -4,7 +4,6 @@
     padding: 0px;
 
     user-select: none;
-    ;
 }
 
 /* Colors */
@@ -22,6 +21,11 @@ body {
 
 .hide {
     opacity: 0;
+}
+
+.disabled {
+    opacity: 0.1 !important;
+    pointer-events: none !important;
 }
 
 .turnoff {
@@ -158,6 +162,65 @@ body {
 #homepageButtons button:active {
     background: rgba(0, 0, 0, 0.3);
     transition: background 0s linear;
+}
+
+/* #endregion */
+
+/* #region BONUS SHOT STUFF*/
+#bonusShotContainer {
+    width: max-content;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    row-gap: 10px;
+
+    color: black;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+}
+
+/* Subtext */
+#bonusShotContainer p span {
+    color: var(--darkgray);
+}
+
+/* Choices */
+#bonusShotChoices {
+    display: flex;
+    column-gap: 10px;
+}
+
+/* Buttons */
+#bonusShotChoices #yesShot,
+#bonusShotChoices #noShot {
+    padding: 4px 4px;
+}
+
+.hoverable {
+    text-align: center;
+    width: 40px;
+    transition: background-color 0.1s ease-in-out;
+}
+
+.hoverable:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.149);
+}
+
+/* vertical separator */
+.vsep {
+    width: 1.2px;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.23);
+}
+
+/* Buttons */
+#bonusShotChoices {
+    color: var(--redText);
 }
 
 /* #endregion */
