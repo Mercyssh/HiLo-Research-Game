@@ -1,5 +1,7 @@
 //Get Button Selectors
 /* #region   */
+const predictionsLeft = document.querySelector("#predictionsLeft");
+
 const lesserBtn = document.querySelector("#lesserBtn");
 const equalBtn = document.querySelector("#equalBtn");
 const greaterBtn = document.querySelector("#greaterBtn");
@@ -11,26 +13,33 @@ const dice = document.querySelector("#dice");
 const diceNumber = document.querySelector("#diceNumber");
 
 const flasher = document.querySelector("#flasher");
+
+const scoreElement = document.querySelector("#score");
+const _root = document.querySelector(":root");
 /* #endregion */
 
 var _rolling = false;   //used to track for tutorial end kickoff
 var rolling = false;    //used to track otherwise
 const diceRollDuration = 2000;  //Enter value in ms. Experiment to find out plz
 
-// Trackers
+// Trackers - DONT TOUCH THIS
 var currentNumber = null;
 var lastNumber = null;
 var op = null;
-var score = 0;
-// var maxScore = 500;
+var streak = 0;
 
+// Controllable parameters
+var score = 100;    //Starting Score
+var maxScore = 500; //Maximum Value
+var increment = 25; //Enter % Value
+var decrement = 10; //Decrement % Value
+var predictions = 15;   //Number of chances
 
 //###EVENT HANDLERS
 $("#lesserBtn").click(rollDice);
 $("#equalBtn").click(rollDice);
 $("#greaterBtn").click(rollDice);
 //###END EVENT HANDLERS
-
 
 // GAME LOGIC FUNCTIONS
 /* #region DICE ROLL SEQUENCE*/
@@ -91,16 +100,34 @@ function DetermineOutcome() {
     if (lastNumber != null || op != null || op != undefined) {
         var correct = eval("" + lastNumber + op + currentNumber);
         op = null;
-        console.log(correct);
 
         // Win / Flash Animation
-        if (correct) { correctFlashSequence(); }
-        else { wrongFlashSequence(); }
+        if (correct) {
+            correctFlashSequence(); //Green Flash
+            score = Math.round(MathClamp(score + (score * increment / 100), 0, maxScore));  //Increase by 25%
+            streak++;   //Increment Streak
 
-        // Calculate Score
+            //Implement Streak Logic and Sequence
+        }
+        else {
+            wrongFlashSequence();   //Red Flash
+            score = Math.round(MathClamp(score - (score * decrement / 100), 0, maxScore))  //Decrease by 25%
+            streak = 0;   //Reset Streak
+        }
 
+        //Update UI
+        scoreElement.innerHTML = score + "/" + maxScore;
+        var _perc = (100 / maxScore * score) + "%";
+        _root.style.setProperty('--scoreFillWidth', _perc);
+
+        //Subtract a prediciton;
+        predictions--;
+        predictionsLeft.innerHTML = `You have ${predictions} predictions left`;
+
+        console.log("guess: " + correct + "\n" + "streak: " + streak);
     }
 }
+
 // Call when correct guess
 function correctFlashSequence() {
     flasher.classList.add("correctFlash");
@@ -118,4 +145,10 @@ function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function MathClamp(value, min, max) {
+    //Clamp Both ways
+    value = Math.min(Math.max(0, value), max);
+    return value;
 }

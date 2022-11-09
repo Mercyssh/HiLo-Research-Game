@@ -13,6 +13,7 @@
     --scorebarBg: #463B3C;
     --darkgray: #70757E;
     --scorebarHeight: 30px;
+    --scoreFillWidth: 20%;
 }
 
 body {
@@ -205,9 +206,10 @@ body {
 
 /* Fill bar */
 #scorebar div {
-    width: 0vw;
+    width: var(--scoreFillWidth);
     height: 100%;
     background: var(--redText);
+    transition: width 0.2s ease-in-out;
 }
 
 /* Read Rules Button */
