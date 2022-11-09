@@ -1,4 +1,8 @@
-//Get Button Selectors
+//TODO
+//WIN / LOOSE SCREENS
+//DATABASE ARCHITECTURE
+//DATABASE IMPLEMENTATION
+
 /* #region SELECTORS*/
 const predictionsLeft = document.querySelector("#predictionsLeft");
 const bonusShotContainer = document.querySelector("#bonusShotContainer");
