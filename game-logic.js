@@ -46,6 +46,7 @@ var decrement = 10; //Decrement % Value
 var predictions = 15;   //Number of chances
 
 //###EVENT HANDLERS
+
 // In Game Choices
 $("#lesserBtn").click(rollDice);
 $("#equalBtn").click(rollDice);
@@ -153,9 +154,9 @@ function DetermineOutcome() {
 // Might move this into Main DetermineOutcome function
 function WinLoseChecks() {
     //You win if you reach the max Score
-    if (score == maxScore) GameEnd(true);
-    //You lose if you run out of predictions
-    if (predictions <= 0) GameEnd(false);
+    if (score >= maxScore) GameEnd(true);
+    //You lose if you run out of predictions and score is not max score or more
+    if (predictions <= 0 && score < maxScore) GameEnd(false);
 }
 
 // Call when you want to offer a streak to the player
@@ -189,17 +190,26 @@ function ApplyBonus(bool) {
 
 // Call when the game ends
 function GameEnd(bool) {
-    ApplyBonus(false);  //Get rid of bouns offer
+    ApplyBonus(false);  //Get rid of any existing bonus offer
 
     // Blast Confetti...
     if (bool) {
         ShootConfetti();
-
+        ShowWinScreen();
     }
     // Show Lose Screen
     if (!bool) {
-
+        ShowLoseScreen();
     }
+}
+
+// Shows Win Screen
+function ShowWinScreen() {
+
+}
+
+function ShowLoseScreen() {
+
 }
 
 // Call to Shoot confetti ONCE

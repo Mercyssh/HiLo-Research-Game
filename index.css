@@ -23,6 +23,11 @@ body {
     opacity: 0;
 }
 
+.hideNoClick {
+    opacity: 0;
+    pointer-events: none;
+}
+
 .disabled {
     opacity: 0.1 !important;
     pointer-events: none !important;
@@ -563,10 +568,18 @@ body {
     height: 100%;
 }
 
-
 .confettiEffect2 {
     position: absolute;
     right: 0px;
+
+    width: auto;
+    height: 100%;
+}
+
+.confettiEffect5 {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
 
     width: auto;
     height: 100%;
