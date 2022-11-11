@@ -45,7 +45,7 @@ var increment = 25; //Enter % Value
 var decrement = 10; //Decrement % Value
 var predictions = 15;   //Number of chances
 
-//###EVENT HANDLERS
+/* #region EVENT HANDLERS */
 
 // In Game Choices
 $("#lesserBtn").click(rollDice);
@@ -55,7 +55,11 @@ $("#greaterBtn").click(rollDice);
 // Choose Yes/No Bonus Shot Buttons
 $("#yesShot").click(() => { ApplyBonus(true) });
 $("#noShot").click(() => { ApplyBonus(false) });
-//###END EVENT HANDLERS
+
+//Replay Btn
+$("#replayBtn").click(() => { location.reload(); });
+
+/* #endregion */
 
 // GAME LOGIC FUNCTIONS
 /* #region DICE ROLL SEQUENCE*/
@@ -195,21 +199,20 @@ function GameEnd(bool) {
     // Blast Confetti...
     if (bool) {
         ShootConfetti();
-        ShowWinScreen();
+        ShowEndScreen(true);
     }
     // Show Lose Screen
     if (!bool) {
-        ShowLoseScreen();
+        ShowEndScreen(false);
     }
 }
 
-// Shows Win Screen
-function ShowWinScreen() {
-
-}
-
-function ShowLoseScreen() {
-
+// Shows Game End Screen
+function ShowEndScreen(bool) {
+    $("#gameOver").removeClass("hideNoClick");
+    $("#gamepage").addClass("hideNoClick");
+    if (bool) $("#resultText").html("You Win!")
+    else $("#resultText").html("You Lost.")
 }
 
 // Call to Shoot confetti ONCE
