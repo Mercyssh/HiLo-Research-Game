@@ -21,6 +21,8 @@ const flasher = document.querySelector("#flasher");
 
 const scoreElement = document.querySelector("#score");
 const _root = document.querySelector(":root");
+
+const confettis = document.querySelectorAll("#confetti *");
 /* #endregion */
 
 var _rolling = false;   //used to track for tutorial end kickoff
@@ -44,6 +46,7 @@ var decrement = 10; //Decrement % Value
 var predictions = 15;   //Number of chances
 
 //###EVENT HANDLERS
+// In Game Choices
 $("#lesserBtn").click(rollDice);
 $("#equalBtn").click(rollDice);
 $("#greaterBtn").click(rollDice);
@@ -190,11 +193,20 @@ function GameEnd(bool) {
 
     // Blast Confetti...
     if (bool) {
+        ShootConfetti();
 
     }
     // Show Lose Screen
     if (!bool) {
 
+    }
+}
+
+// Call to Shoot confetti ONCE
+function ShootConfetti() {
+    for (var confetti of confettis) {
+        confetti.stop();
+        confetti.play();
     }
 }
 /* #endregion */
