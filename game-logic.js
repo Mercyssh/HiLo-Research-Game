@@ -186,6 +186,8 @@ function ApplyBonus(bool) {
 
 // Call when the game ends
 function GameEnd(bool) {
+    ApplyBonus(false);  //Get rid of bouns offer
+
     // Blast Confetti...
     if (bool) {
 

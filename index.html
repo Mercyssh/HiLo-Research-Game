@@ -26,6 +26,7 @@
         </div>
     </div>
 
+    <!-- ACTUAL GAME CONTENT -->
     <div id="gamepage" class="turnoff hide">
         <!-- Tutorial page, disable when finished, enable when needed -->
         <div id="tutorial" class="">
@@ -123,16 +124,34 @@
         </div>
     </div>
 
+    <!-- VX EFFECTS -->
     <div id="flasher" class=""></div>
+    <div id="confetti" class="">
+        <lottie-player class="confettiEffect1" src="https://assets10.lottiefiles.com/packages/lf20_rovf9gzu.json"
+            background="transparent" speed="1"></lottie-player>
+
+        <lottie-player class="confettiEffect2" src="https://assets10.lottiefiles.com/packages/lf20_rovf9gzu.json"
+            background="transparent" speed="1"></lottie-player>
+
+        <lottie-player class="confettiEffect3" src="https://assets8.lottiefiles.com/packages/lf20_obhph3sh.json"
+            background="transparent" speed="1"></lottie-player>
+
+        <lottie-player class="confettiEffect4" src="https://assets8.lottiefiles.com/packages/lf20_obhph3sh.json"
+            background="transparent" speed="1"></lottie-player>
+    </div>
 
     <!-- JQUERY -->
     <script src="assets/jquery.js"></script>
+    <!-- LOTTIE USED FOR VFX -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
     <!-- INTRO SCREEN -->
     <script src="intro-screen.js" defer></script>
     <!-- TUTORIAL SCREEN -->
     <script src="tutorial-screen.js" defer></script>
     <!-- GAME LOGIC -->
     <script src="game-logic.js" defer></script>
+
 </body>
 
 </html>

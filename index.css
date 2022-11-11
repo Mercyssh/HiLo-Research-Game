@@ -65,33 +65,7 @@ body {
     pointer-events: none;
 }
 
-/* #region FLASHER */
-#flasher {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    z-index: 30;
-    /* background-color: black; */
-    /* box-shadow: none; */
-
-    user-select: none;
-    pointer-events: none;
-
-    transition: box-shadow .5s ease-in-out;
-}
-
-.correctFlash {
-    box-shadow: inset 0 0 100px rgb(130, 232, 126);
-}
-
-.wrongFlash {
-    box-shadow: inset 0 0 100px rgb(232, 126, 126);
-}
-
-/* #endregion */
-
-
-/* ########## MENU SCREEN ########## */
+/* #region MENU SCREEN*/
 #homepage {
     position: absolute;
 
@@ -135,6 +109,8 @@ body {
 
     transition: all 0.3s ease-in;
 }
+
+/* #endregion */
 
 /* #region MENU BUTTONS */
 #homepageButtons button {
@@ -533,5 +509,86 @@ body {
     border-top: 15px solid rgb(0, 0, 0);
     border-radius: 10px;
 }
+
+/* #endregion */
+
+/* #region VFX*/
+
+/* #region FLASHER */
+#flasher {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 30;
+    /* background-color: black; */
+    /* box-shadow: none; */
+
+    user-select: none;
+    pointer-events: none;
+
+    transition: box-shadow .5s ease-in-out;
+}
+
+.correctFlash {
+    box-shadow: inset 0 0 100px rgb(130, 232, 126);
+}
+
+.wrongFlash {
+    box-shadow: inset 0 0 100px rgb(232, 126, 126);
+}
+
+/* #endregion */
+/* #region CONFETTI */
+#confetti {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+    pointer-events: none;
+    user-select: none;
+
+    z-index: 13;
+}
+
+#confetti * {
+    pointer-events: none;
+    user-select: none;
+}
+
+.confettiEffect1 {
+    position: absolute;
+    left: 0px;
+
+    width: auto;
+    height: 100%;
+}
+
+
+.confettiEffect2 {
+    position: absolute;
+    right: 0px;
+
+    width: auto;
+    height: 100%;
+}
+
+.confettiEffect3 {
+    position: absolute;
+    top: -100px;
+
+    height: auto;
+    width: auto;
+}
+
+.confettiEffect4 {
+    position: absolute;
+    right: 100px;
+    bottom: 100px;
+
+    height: auto;
+    width: auto;
+}
+
+/* #endregion */
 
 /* #endregion */
