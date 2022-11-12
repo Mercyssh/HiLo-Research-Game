@@ -380,6 +380,7 @@ body {
     position: relative;
     display: flex;
     right: 0%;
+    bottom: 0%;
 
     transition: all 0.5s ease-in-out;
 }
@@ -643,6 +644,14 @@ body {
     width: auto;
 }
 
+.confettiEffect6 {
+    display: none;
+    position: absolute;
+
+    height: auto;
+    width: auto;
+}
+
 /* #endregion */
 
 /* #endregion */
@@ -700,6 +709,79 @@ body {
 
 #backToHomeBtn:hover {
     background: rgba(0, 0, 0, 0.141);
+}
+
+/* #endregion */
+
+/* #region MEDIA QUERIES AND RESPONSIVITY*/
+/* For screens up to 600px in width */
+@media screen and (max-width: 768px) {
+
+    /* #region FLOW REORGANIZATION*/
+    #promptContainer {
+        flex-direction: column;
+    }
+
+    #textContainer {
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+    #choices {
+        flex-direction: row;
+        column-gap: 15px;
+    }
+
+    .sep {
+        width: 1.2px;
+        height: 100%;
+    }
+
+    /* #endregion */
+
+    /* DICE COMPATIBILITY */
+    .diceToCenter {
+        right: 0%;
+        bottom: 50%;
+        transform: translate(0, 0%);
+    }
+
+    #confetti {
+        overflow-x: visible;
+    }
+
+    .confettiEffect1 {
+        overflow: hidden;
+        height: auto;
+        bottom: 0px;
+    }
+
+    .confettiEffect2 {
+        height: auto;
+        bottom: 0px;
+    }
+
+    .confettiEffect5 {
+        height: auto;
+        bottom: 0px;
+    }
+
+    .confettiEffect4 {
+        right: 100px;
+        top: 0px;
+
+        width: 500px;
+    }
+
+    .confettiEffect6 {
+        display: block;
+
+        left: 0px;
+        top: 0px;
+
+        width: 500px;
+    }
+
 }
 
 /* #endregion */

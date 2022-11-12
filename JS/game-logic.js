@@ -51,6 +51,7 @@ var decrement = 10; //Decrement % Value
 var predictions = 15;   //Number of chances
 
 /* #region EVENT HANDLERS */
+// document.addEventListener("click", ShootConfetti);
 
 // In Game Choices
 $("#lesserBtn").click(rollDice);
