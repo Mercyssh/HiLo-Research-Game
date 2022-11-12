@@ -223,10 +223,12 @@ function GameEnd(bool) {
     if (bool) {
         ShootConfetti();
         ShowEndScreen(true);
+        win = true;
     }
     // Show Lose Screen
     if (!bool) {
         ShowEndScreen(false);
+        win = false;
     }
 
     // Push Player Data to server
