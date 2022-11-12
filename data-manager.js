@@ -16,7 +16,7 @@ async function pushUserData() {
 
     // Try to PUSH the data to the DB
     const { data, error } = await supa
-        .from('reports')
+        .from('playerdata')
         .insert([{
             id: Date.now(),
             user_id: localStorage.getItem("uid"),

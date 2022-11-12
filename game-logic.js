@@ -38,6 +38,7 @@ var gameOn = true;  //Tracks when the game ends
 var streak = 0; //Should start at 0
 var multiplier = 1; //Ideally 1, set to 2 on Bonus Shot
 var bonus_shots = 0;
+var last_was_bonus = false;
 var predictions_counter = 0;
 var gamedata = [{}];
 gamedata[0].bonus_taken = false; //Initialize first bonus not taken
@@ -142,13 +143,24 @@ function DetermineOutcome() {
         }
 
         //Update current play info in gamedata
+        var tempop = op == "=" ? "Equal To" : (op == "<" ? "Greater Than" : "Lesser Than"); //Flip sign for better readibility
+
+        // ALTERNATE WAY TO UPDATE
+        // gamedata[predictions_counter].current_prediction = predictions_counter;
+        // gamedata[predictions_counter].next_number = currentNumber;
+        // gamedata[predictions_counter].prediction = tempop;
+        // gamedata[predictions_counter].current_number = lastNumber;
+        // gamedata[predictions_counter].correct = correct;
+        // gamedata[predictions_counter].score_after = score;
+
         gamedata[predictions_counter] = {
             current_prediction: predictions_counter,
             next_number: currentNumber,
-            prediction: op,
+            prediction: tempop,
             current_number: lastNumber,
             correct: correct,
-            score_after: score
+            score_after: score,
+            bonus_taken: last_was_bonus
         }
 
         //Reset Multiplier after using it
@@ -166,6 +178,7 @@ function DetermineOutcome() {
 
         // reset op for safety
         op = null;
+        last_was_bonus = false;   //Set last was bonus back to false. It will get set to true again if player chooses bonus shot
         // console.log("guess: " + correct + "\n" + "streak: " + streak);
     }
 }
@@ -199,7 +212,7 @@ function ApplyBonus(bool) {
         multiplier = 2; //Set multiplier
         $("#dice").addClass("onFire") //Enable Fire
         $("#fireEffect").removeClass("hide");   //Unhide Fire
-        gamedata[(predictions_counter + 1)].bonus_taken = true // Record the choice   
+        last_was_bonus = true;
     }
 
     //Update UI : Show remainind preds, hide offer, enable other ui
@@ -207,7 +220,7 @@ function ApplyBonus(bool) {
         predictionsLeft.classList.remove("turnoff");
         bonusShotContainer.classList.add("turnoff");
         promptContainer.classList.remove("disabled");
-        gamedata[(predictions_counter + 1)].bonus_taken = false // Record the choice 
+        last_was_bonus = false;
     })
 }
 
