@@ -155,7 +155,12 @@
     <script src="assets/jquery.js"></script>
     <!-- LOTTIE USED FOR VFX -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <!-- <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script> -->
+    <!-- DATABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script>
+        const { createClient } = supabase
+        const supa = createClient('https://bwelwmjevmptzarfwqgw.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3ZWx3bWpldm1wdHphcmZ3cWd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjgyMDU3MDEsImV4cCI6MTk4Mzc4MTcwMX0.eZ3x5muATEt0KCgs2zhd0cowvK2W-RHShRhkTx1ODaw')
+    </script>
     <!-- INTRO SCREEN -->
     <script src="intro-screen.js" defer></script>
     <!-- TUTORIAL SCREEN -->
