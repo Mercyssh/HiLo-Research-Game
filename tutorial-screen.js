@@ -1,10 +1,10 @@
 var tutorialCards = document.querySelectorAll(".tutorialcard");
+var tutorial_first = true;
 
 //Align all tutorial cards
 for (var c of tutorialCards) {
     c.addEventListener("click", nextTutorialCard);
 }
-
 
 // Function used to make sure the tutorial cards are in the correct position
 function updateTutorialCardsPosition() {
@@ -42,7 +42,6 @@ function nextTutorialCard() {
                 if (card == tutorialCards.length - 1) {
                     if (!_rolling) {
                         _rolling = true;
-                        console.log("clicked");
                         disableTutorial();
                     }
                     break;
@@ -51,22 +50,16 @@ function nextTutorialCard() {
                 //disable me
                 tutorialCards[card].setAttribute("data-status", "inactive") //status
                 tutorialCards[card].classList.remove("tutorialShow")    //visual
-                // _hook.removeClass("tutorialPop");   //z order
 
                 //enable next
                 if (parseInt(card) + 1 < tutorialCards.length) {
                     tutorialCards[parseInt(card) + 1].setAttribute("data-status", "active");    //status
                     tutorialCards[parseInt(card) + 1].classList.add("tutorialShow");    //visual
-                    // _next_hook.addClass("tutorialPop"); //z order
                 }
 
                 break;
             }
         }
-
-        // if (card == tutorialCards.length - 1) {
-        //     disableTutorial();
-        // }
     }
 }
 
@@ -76,10 +69,26 @@ function disableTutorial() {
     //Fade out and turn off
     $("#tutorial").animate({ opacity: 0 }, 1000, () => {
         $("#tutorial").addClass("turnoff");
-        rollDice();
+        if (tutorial_first) rollDice();
+        tutorial_first = false; //Make sure it only auto rolls the first time
     })
 }
-//Call this to bring it back again!
+//Function to reset the tutorial back to initial state
 function enableTutorial() {
+    //Disable all data-status on tutorial cards
+    for (var card of tutorialCards) {
+        card.setAttribute("data-status", "inactive");    //status
+        card.classList.remove("tutorialShow");    //visual
+    }
 
+    // Enable first one
+    tutorialCards[0].setAttribute("data-status", "active");    //status
+    tutorialCards[0].classList.add("tutorialShow");    //visual
+
+    //Unhide tutorial
+    $("#tutorial").removeClass("turnoff");
+    $("#tutorial").animate({ opacity: 1 });
+
+    _rolling = false;
 }
+$("#reRules").click(enableTutorial);

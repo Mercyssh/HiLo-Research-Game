@@ -1,8 +1,7 @@
 //TODO
-//CREDITS PAGE
-//PROJECT ORGANIZATION
 //READ RULES AGAIN
 //RESPONSIVITY
+//PROJECT ORGANIZATION
 
 /* #region SELECTORS*/
 const predictionsLeft = document.querySelector("#predictionsLeft");
