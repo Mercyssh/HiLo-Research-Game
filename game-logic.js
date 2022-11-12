@@ -143,7 +143,7 @@ function DetermineOutcome() {
         }
 
         //Update current play info in gamedata
-        var tempop = op == "=" ? "Equal To" : (op == "<" ? "Greater Than" : "Lesser Than"); //Flip sign for better readibility
+        var tempop = op == "==" ? "Equal To" : (op == "<" ? "Greater Than" : "Lesser Than"); //Flip sign for better readibility
 
         gamedata[predictions_counter] = {
             current_prediction: predictions_counter,
