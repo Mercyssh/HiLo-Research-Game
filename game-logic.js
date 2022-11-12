@@ -37,6 +37,10 @@ var win = false;
 var gameOn = true;  //Tracks when the game ends
 var streak = 0; //Should start at 0
 var multiplier = 1; //Ideally 1, set to 2 on Bonus Shot
+var bonus_shots = 0;
+var predictions_counter = 0;
+var gamedata = [{}];
+gamedata[0].bonus_taken = false; //Initialize first bonus not taken
 
 // Controllable parameters
 var score = 100;    //Starting Score
@@ -124,7 +128,6 @@ function DetermineOutcome() {
 
     if (lastNumber != null || op != null || op != undefined) {
         var correct = eval("" + lastNumber + op + currentNumber);
-        op = null;
 
         // Win / Flash Animation
         if (correct) {
@@ -138,6 +141,16 @@ function DetermineOutcome() {
             streak = 0;   //Reset Streak
         }
 
+        //Update current play info in gamedata
+        gamedata[predictions_counter] = {
+            current_prediction: predictions_counter,
+            next_number: currentNumber,
+            prediction: op,
+            current_number: lastNumber,
+            correct: correct,
+            score_after: score
+        }
+
         //Reset Multiplier after using it
         multiplier = 1;
 
@@ -148,9 +161,12 @@ function DetermineOutcome() {
 
         //Subtract a prediciton;
         predictions--;
+        predictions_counter++;
         predictionsLeft.innerHTML = `You have ${predictions} predictions left`;
 
-        console.log("guess: " + correct + "\n" + "streak: " + streak);
+        // reset op for safety
+        op = null;
+        // console.log("guess: " + correct + "\n" + "streak: " + streak);
     }
 }
 
@@ -179,9 +195,11 @@ function OfferStreak() {
 // Call on click of yes or no btn
 function ApplyBonus(bool) {
     if (bool) {
+        bonus_shots++;
         multiplier = 2; //Set multiplier
         $("#dice").addClass("onFire") //Enable Fire
         $("#fireEffect").removeClass("hide");   //Unhide Fire
+        gamedata[(predictions_counter + 1)].bonus_taken = true // Record the choice   
     }
 
     //Update UI : Show remainind preds, hide offer, enable other ui
@@ -189,6 +207,7 @@ function ApplyBonus(bool) {
         predictionsLeft.classList.remove("turnoff");
         bonusShotContainer.classList.add("turnoff");
         promptContainer.classList.remove("disabled");
+        gamedata[(predictions_counter + 1)].bonus_taken = false // Record the choice 
     })
 }
 
@@ -205,6 +224,9 @@ function GameEnd(bool) {
     if (!bool) {
         ShowEndScreen(false);
     }
+
+    // Push Player Data to server
+    pushUserData();
 }
 
 // Shows Game End Screen
@@ -249,3 +271,4 @@ function MathClamp(value, min, max) {
     return value;
 }
 /* #endregion */
+
