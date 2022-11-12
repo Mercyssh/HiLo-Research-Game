@@ -145,14 +145,6 @@ function DetermineOutcome() {
         //Update current play info in gamedata
         var tempop = op == "=" ? "Equal To" : (op == "<" ? "Greater Than" : "Lesser Than"); //Flip sign for better readibility
 
-        // ALTERNATE WAY TO UPDATE
-        // gamedata[predictions_counter].current_prediction = predictions_counter;
-        // gamedata[predictions_counter].next_number = currentNumber;
-        // gamedata[predictions_counter].prediction = tempop;
-        // gamedata[predictions_counter].current_number = lastNumber;
-        // gamedata[predictions_counter].correct = correct;
-        // gamedata[predictions_counter].score_after = score;
-
         gamedata[predictions_counter] = {
             current_prediction: predictions_counter,
             next_number: currentNumber,
@@ -220,7 +212,6 @@ function ApplyBonus(bool) {
         predictionsLeft.classList.remove("turnoff");
         bonusShotContainer.classList.add("turnoff");
         promptContainer.classList.remove("disabled");
-        last_was_bonus = false;
     })
 }
 
