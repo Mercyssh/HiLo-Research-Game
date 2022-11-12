@@ -1,7 +1,8 @@
 //TODO
-//WIN / LOOSE SCREENS
-//DATABASE ARCHITECTURE
-//DATABASE IMPLEMENTATION
+//CREDITS PAGE
+//PROJECT ORGANIZATION
+//READ RULES AGAIN
+//RESPONSIVITY
 
 /* #region SELECTORS*/
 const predictionsLeft = document.querySelector("#predictionsLeft");

@@ -646,3 +646,60 @@ body {
 /* #endregion */
 
 /* #endregion */
+
+/* #region CREDITS PAGE*/
+#credits {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 10px;
+
+    text-align: center;
+
+    transition: opacity 0.5s ease-in-out;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+#credits h3 {
+    color: rgba(0, 0, 0, 0.347);
+}
+
+.credit-title {
+    font-size: 12px;
+    color: rgba(131, 131, 131, 0.627);
+    margin-bottom: 2px;
+}
+
+.credit-name {
+    margin-bottom: 6px;
+}
+
+/* Button */
+#backToHomeBtn {
+    font-family: 'Montserrat', sans-serif;
+
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--redText);
+
+    padding: 6px 10px;
+
+    cursor: pointer;
+
+    opacity: 1;
+
+    transition: all 0.2s ease-in-out;
+}
+
+#backToHomeBtn:hover {
+    background: rgba(0, 0, 0, 0.141);
+}
+
+/* #endregion */
