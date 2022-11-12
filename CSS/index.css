@@ -718,13 +718,19 @@ body {
 @media screen and (max-width: 768px) {
 
     /* #region FLOW REORGANIZATION*/
+
+    #gameContainer {
+        row-gap: 10px;
+    }
+
     #promptContainer {
         flex-direction: column;
+        row-gap: 15px;
     }
 
     #textContainer {
         flex-direction: column;
-        row-gap: 20px;
+        row-gap: 10px;
     }
 
     #choices {
@@ -746,6 +752,7 @@ body {
         transform: translate(0, 0%);
     }
 
+    /* #region VFX COMPATIBILITY */
     #confetti {
         overflow-x: visible;
     }
@@ -781,6 +788,8 @@ body {
 
         width: 500px;
     }
+
+    /* #endregion */
 
 }
 
