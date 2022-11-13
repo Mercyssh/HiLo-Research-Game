@@ -47,7 +47,7 @@ gamedata[0].bonus_taken = false; //Initialize first bonus not taken
 var score = 100;    //Starting Score
 var maxScore = 500; //Maximum Value
 var increment = 25; //Enter % Value
-var decrement = 10; //Decrement % Value
+var decrement = 20; //Decrement % Value
 var predictions = 15;   //Number of chances
 
 /* #region EVENT HANDLERS */
